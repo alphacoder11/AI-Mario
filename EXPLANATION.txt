@@ -1,0 +1,53 @@
+# File: EXPLANATION.txt
+
+## Module and Function Explanations
+
+**main.py**
+- Handles game loop, menu, state transitions, entity management, and rendering. `game_loop()` runs per-frame updates.
+- Uses `reset_game()` for level, player, enemy spawning, and camera.
+- Sound, adaptive AI, camera handled per frame.
+
+**player.py**
+- `Player` class models Mario-like movement, jump physics, collision. 
+- `handle_input()` captures controls and triggers actions (move, jump, shoot).
+- `update()` applies physics, movement, and collision.
+- `draw()` uses rectangles with "face" elements.
+- `respawn()` resets on death.
+
+**enemy.py**
+- Base `Enemy` class for all enemy types.
+- `Patroller` subclass implements edge-detection and patrol movement.
+- `Chaser` subclass follows player if in range using simple pathing, switches between idle and chase states, animates with color/flips.
+
+**bullet.py**
+- `Bullet` class for player projectile, manages movement, lifetime, rectangle collision with enemies.
+
+**level.py**
+- `Level` class loads CSV maps, interprets tile characters (#, @, P, C, $), builds `pygame.Rect` platform list, enemy and coin spawns.
+
+**ai.py**
+- `AdaptiveAI` class tracks score samples, updates enemy speed/detection_range, saves/loads state from JSON.
+- `AutoPlayer` class provides rule-based bot with control logic based on ground detection, coins, hazards.
+
+**hud.py**
+- `HUD` class draws score, lives, level, AutoPlayer status to top of screen using fonts.
+
+**utils.py**
+- Utility functions: `clamp()` restrict value to [min,max], `load_highscore()`/`save_highscore()` JSON read/write, `play_sound()` loads sounds safely.
+
+**tests/** 
+- `test_utils.py` verifies clamp bounds.
+- `test_level.py` checks that level parsing finds platforms, enemies, coins, and spawn.
+
+**assets/README.md**
+- Describes where to get free sprites/sounds, how to integrate, licensing notes.
+
+**data/level1.csv**
+- Sample level with platforms, spawn points, coins, enemies.
+
+**requirements.txt**
+- Pygame and NumPy with version notes.
+
+**REPORT.md**
+- Viva-ready project summary and common Q&A.
+
